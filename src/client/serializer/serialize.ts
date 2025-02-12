@@ -98,7 +98,7 @@ const serializeR = <T = unknown>(v: T, { indent = null, indentLevel = 0 }: Seria
         );
       }
       // insert value
-      parts.push(serializeR(val, { indent, indentLevel: indentLevel + 1 }), ',');
+      parts.push(serializeR(val, { indent, indentLevel: indentLevel + 1 }), ';');
       if (indent !== null) {
         parts.push('\n');
       }
@@ -128,9 +128,9 @@ const serialize = <T = unknown>(v: T, options: SerializeOptions = {}): string =>
     for (const item of v) {
       res.push(serializeR(item, options));
     }
-    let splitter = ',';
+    let splitter = ';';
     if (indent !== null) {
-      splitter = `,\n${indent.repeat(indentLevel)}`;
+      splitter = `;\n${indent.repeat(indentLevel)}`;
     }
     return res.join(splitter);
   }
